@@ -1,31 +1,59 @@
 import React from 'react'
 import { useState } from 'react'
-import SearchIcon from '../assets/search.png'
+import { AsyncPaginate } from 'react-select-async-paginate';
+import axios from 'axios';
+import { geo_api } from '../api';
 
 const Search = (props) => {
-  const [city, setCity] = useState('');
+  const [search, setSearch] = useState(null);
   
-  const handleInput = (event) => {
-    setCity(event.target.value);
-  }
+  const loadOptions = async (searchInputValue) => {
+     try {
+      const response = await axios.request({
+        method: geo_api.method,
+        url: `${geo_api.url}/cities`,
+        params: {
+          minPopulation: 10000,
+          namePrefix: searchInputValue
+        },
+        headers: geo_api.headers
+      });
 
-  const handleSearch = () => {
-    props.onButtonClick(city);
-    setCity("")
+      console.log(response.data);
+
+      return {
+        options: response.data.data.map((city) => {
+          return {
+            value: `${city.latitude} ${city.longitude}`,
+            label: `${city.name}, ${city.countryCode}`,
+          }
+        }),
+        hasMore: false,
+      };
+    } catch (error) {
+      console.error(error);
+      return {
+        options: [],
+        hasMore: false,
+      };
+    }
+  };
+
+  const handleChange = (searchData) => {
+    setSearch(searchData);
+    props.onSearchChange(searchData)
   }
 
   return (
-    <div className='flex text-center mx-auto space-x-5 justify-center items-center mb-7'>
-        <input 
-          type="text" 
-          placeholder='City' 
-          className='rounded-lg cursor-pointer border border-black h-8 focus:outline-none pl-2'
-          onChange={handleInput}  
-          value={city}
+    <div className='flex mx-auto space-x-5 justify-center items-center mb-5 rounded-lg'>
+        <AsyncPaginate 
+          placeholder="Search for city"
+          debounceTimeout={1000}
+          value={search}
+          onChange={handleChange}
+          loadOptions={loadOptions}
+          className='w-64 b-black focus:outline-none bg-yellow-300'
         />
-        <button className='rounded-full bg-white p-2 border-black border' onClick={handleSearch}>
-            <img src={SearchIcon} alt="" />
-        </button>
     </div>
   )
 }

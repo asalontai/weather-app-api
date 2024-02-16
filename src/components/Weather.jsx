@@ -14,6 +14,8 @@ const Weather = (props) => {
 
   const weather = props.weather;
 
+  const location = props.location;
+
   const [weatherIcon, setWeatherIcon] = useState(null)
 
   useEffect(() => {
@@ -38,15 +40,12 @@ const Weather = (props) => {
     }
   }, [weather])
 
-  console.log('Weather:', weather);
-  console.log('Weather Icon:', weatherIcon);
-
 
   return (
       <div className='flex flex-col items-center mb-8'>
           <img src={weatherIcon} alt="" className='h-28 w-28'/>
           <h1 className='text-6xl text-white font-medium mt-2'>{temperature}°{props.unit}</h1>
-          <h4 className='text-3xl text-white mt-1'>{props.city}</h4>
+          <h4 className='text-3xl text-white mt-1'>{location}</h4>
       </div>
   )
 }

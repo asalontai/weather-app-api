@@ -10,7 +10,7 @@ const Converter = (props) => {
     return (
         <div>
             <button 
-                className='text-black bg-white w-7 p-1 pl-1 pr-1 rounded-xl border-black border ml-1'
+                className='text-black bg-white w-7 p-1 pl-1 pr-1 rounded-xl border-gray border ml-1'
                 onClick={handleClick}    
             >
                 {props.unit}
