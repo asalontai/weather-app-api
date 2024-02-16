@@ -13,7 +13,7 @@ const Search = (props) => {
         method: geo_api.method,
         url: `${geo_api.url}/cities`,
         params: {
-          minPopulation: 10000,
+          minPopulation: 30000,
           namePrefix: searchInputValue
         },
         headers: geo_api.headers
