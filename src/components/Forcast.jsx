@@ -23,13 +23,22 @@ const Forcast = (props) => {
         fetchForcastData();
     }, [props.latitude, props.longitude]);
 
+    const convertDay = (day) => {
+        const dateObject = new Date(day);
+        const dayOfWeek = dateObject.getDay();
+        const dayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
+        const rename = dayNames[dayOfWeek];
+        console.log(rename)
+        return rename
+    }
+
     return (
         <div className='flex text-white items-start text-xs p-0 space-x-28 ml-0 mt-16 mr-3'>
             {forcastData && forcastData.map((day, index) => (
                 <div className='w-24' key={index}>
-                    <p className='ml-3 pb-0 mb-0'>{day.date}</p>
+                    <p className='mr-11 mb-2'>{convertDay(day.date)}</p>
                     <div className="flex items-center pt-0 mt-0">
-                        <img src={day.day.condition.icon} alt="" className='w-12 mb-3'/>
+                        <img src={day.day.condition.icon} alt="" className='w-12 -mt-3'/>
                         <div className="flex flex-col">
                             <p>H: {props.unit === 'F' ? Math.round(day.day.maxtemp_f) : Math.round(day.day.maxtemp_c)}°{props.unit}</p>
                             <p>L: {props.unit === 'F' ? Math.round(day.day.mintemp_f) : Math.round(day.day.mintemp_c)}°{props.unit}</p>

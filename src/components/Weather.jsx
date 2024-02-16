@@ -7,6 +7,7 @@ import DrizzleIcon from '../assets/drizzle.png'
 import RainIcon from '../assets/rain.png'
 import SnowIcon from '../assets/snow.png'
 import ThunderIcon from '../assets/thunderstorm.png'
+import HazeIcon from '../assets/haze.svg'
 
 
 const Weather = (props) => {
@@ -37,9 +38,14 @@ const Weather = (props) => {
     } else if (weather === 'Thunderstorm') {
       setWeatherIcon(ThunderIcon)
       console.log('Thunder')
+    } else if (weather === 'Haze') {
+      setWeatherIcon(HazeIcon)
+      console.log('Haze')
     }
   }, [weather])
 
+  console.log(weather)
+  console.log(weatherIcon)
 
   return (
       <div className='flex flex-col items-center mb-8'>
