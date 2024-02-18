@@ -1,8 +1,3 @@
-# React + Vite
+Weather App API:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is an app developed by solo developer Alex Salontai. This app is developed and used on Vite using React. The app uses three APIS: Geo DB, Weatherapi, and OpenWeatherMap. These APIs are utilized to extract data from an API to be utilized as information between each API. The app essentially uses an Async Paginate from React to search for a city. The search utilizes the Geo DB API to get the coordinates of each location searched for. Cities that are searched must have a minimum population of 100000 people to pop up. Once a location is found and selected, the app displays a multitude of information such as the current weather using an icon, the current temperature in either Celcius or Fahrenheit, the current location, the forecast for the day before, the current day, and the next day, the current humidity, and the current wind speed. Geo DB provides the coordinates of each location allowing the OpenWeatherApi to extract weather information from the given coordinates. As for the forecast, the coordinates are used by the Weatherapi to extract the forecast of the location. The app also utilizes a button to allow the user to convert the temperature from Celcius to Fahrenheit and vice versa. This converts the temperature of the forecast and the current temperature. The user can use the Async Paginate to search any type of city and display the weather information multiple times. 
