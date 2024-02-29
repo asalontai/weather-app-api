@@ -38,7 +38,7 @@ const Weather = (props) => {
     } else if (weather === 'Thunderstorm') {
       setWeatherIcon(ThunderIcon)
       console.log('Thunder')
-    } else if (weather === 'Haze') {
+    } else if (weather === 'Haze' || weather === 'Mist') {
       setWeatherIcon(HazeIcon)
       console.log('Haze')
     }

@@ -25,7 +25,9 @@ const Forcast = (props) => {
 
     const convertDay = (day) => {
         const dateObject = new Date(day);
+        console.log(dateObject)
         const dayOfWeek = dateObject.getDay();
+        console.log(dayOfWeek)
         const dayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
         const rename = dayNames[dayOfWeek];
         console.log(rename)

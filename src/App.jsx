@@ -9,9 +9,9 @@ import Wind from './components/Wind'
 import Forcast from './components/Forcast'
 
 function App() {
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-  const [location, setLocation] = useState(null);
+  const [latitude, setLatitude] = useState(40.730610);
+  const [longitude, setLongitude] = useState(-73.935242);
+  const [location, setLocation] = useState("New York City, US");
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
   const [unit, setUnit] = useState('F');
@@ -65,15 +65,24 @@ function App() {
         <Converter unit={unit} setUnit={setUnit}/>
         <Search onSearchChange={handleOnSearchChange}/>
       </div>
-      {weatherData && 
+      {
+        (weatherData) ? 
+        <div>
+          
+          <Weather unit={unit} temperature={weatherData.main.temp} location={location} weather={weatherData.weather[0].main}/>
+          <Forcast unit={unit} latitude={latitude} longitude={longitude}/>
+            <div className="flex space-x-40 mt-12 ml-10">
+              <Humidity humidity={weatherData.main.humidity}/>
+              <Wind windspeed={weatherData.wind.speed}/>
+            </div>
+        </div> 
+      : 
+
       <div>
-        <Weather unit={unit} temperature={weatherData.main.temp} location={location} weather={weatherData.weather[0].main}/>
-        <Forcast unit={unit} latitude={latitude} longitude={longitude}/>
-          <div className="flex space-x-40 mt-12 ml-10">
-            <Humidity humidity={weatherData.main.humidity}/>
-            <Wind windspeed={weatherData.wind.speed}/>
-          </div>
+
       </div>
+
+
       }
     </div>
   )
