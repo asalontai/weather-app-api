@@ -10,7 +10,7 @@ function App() {
   const [error, setError] = useState(null);
   const [unit, setUnit] = useState('F')
 
-  const apikey = 'e13e773c69f51c23e102409550e96faa';
+  const apikey = '';
 
   const getWeather = async (city) => {
     try {
